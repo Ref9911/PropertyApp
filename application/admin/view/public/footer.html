@@ -1,0 +1,79 @@
+<script src="__STATIC__/assets/js/echarts.min.js"></script>
+<script src="__STATIC__/assets/js/jquery.min.js"></script>
+<script src="__STATIC__/assets/js/amazeui.min.js"></script>
+<script src="__STATIC__/assets/js/iscroll.js"></script>
+<script src="__STATIC__/assets/js/app.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#doc-form-file").change(function() {
+            var $file = $(this);
+            var fileObj = $file[0];
+            var windowURL = window.URL || window.webkitURL;
+            var dataURL;
+            var $img = $("#preview");
+
+            if(fileObj && fileObj.files && fileObj.files[0]){
+                dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                $img.attr('src',dataURL);
+            }else{
+                dataURL = $file.val();
+                var imgObj = document.getElementById("preview");
+// 两个坑:
+// 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+// 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+                imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+            }
+        });
+        var tabCounter = 0;
+        var $tab = $('#doc-tab-demo-1');
+        var $nav = $tab.find('.am-tabs-nav');
+        var $bd = $tab.find('.am-tabs-bd');
+
+        function addTab(titletext,urls) {
+            $('.am-nav-tabs li').removeClass('am-active');
+            $('.am-tabs-bd > div').removeClass('am-active');
+            var nav = '<li class="am-active"><span class="am-icon-close"></span>' +
+                '<a href="javascript: void(0)">'+titletext+'</a></li>';
+            var content = '<div class="am-tab-panel am-active"><iframe class="J_iframe" name="iframe0" width="100%" height="100%" style="min-height: 500px;" src="'+urls+'" frameborder="0" seamless></iframe></div>';
+
+            $nav.append(nav);
+            $bd.append(content);
+            tabCounter++;
+            $tab.tabs('refresh');
+        }
+        // 动态添加标签页
+        $('.js-append-tab').on('click', function() {
+            var titletext = $(this).text();
+            var index = $(".am-nav-tabs a:contains('" + titletext + "')").parent().index();
+            //alert(index);
+            if (index > 0)
+            {
+                $tab.tabs('open',index);
+            }
+            else
+            {
+                var urls=$(this).attr('data_id');
+                //$.post(urls,{},function(data,textStatus){
+                addTab(titletext,urls);
+                //});
+            }
+        });
+
+        // 移除标签页
+        $nav.on('click', '.am-icon-close', function() {
+            var $item = $(this).closest('li');
+            var index = $nav.children('li').index($item);
+
+            $item.remove();
+            $bd.find('.am-tab-panel').eq(index).remove();
+
+            $tab.tabs('open', index > 0 ? index - 1 : index + 1);
+            $tab.tabs('refresh');
+        });
+
+    });
+
+</script>
+

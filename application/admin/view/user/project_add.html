@@ -1,0 +1,42 @@
+{include file="public/css"}
+<div class="tpl-portlet-components">
+    <div class="portlet-title">
+        <div class="caption font-green bold">
+            <span class="am-icon-code"></span> 添加收费项目
+        </div>
+    </div>
+    <div class="tpl-block ">
+
+        <div class="am-g tpl-amazeui-form">
+
+
+            <div class="am-u-sm-12 am-u-md-9">
+                <form enctype="multipart/form-data" action="{:url('User/project_do_add')}" method="post" class="am-form am-form-horizontal">
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">收费项目名称 / Title</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" name="title" id="user-name" placeholder="收费项目名称 / Title">
+                            <small>输入收费项目名称。</small>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">缴纳金额 / expense</label>
+                        <div class="am-u-sm-9">
+                            <input name="expense" type="text" placeholder="输入缴纳金额 / expense">
+                        </div>
+                    </div>
+
+
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <button type="submit" class="am-btn am-btn-primary">添加</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{include file="public/footer"}

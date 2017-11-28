@@ -1,0 +1,146 @@
+{include file="public/css"}
+
+<div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 房产添加
+                    </div>
+                    <div class="tpl-portlet-input tpl-fz-ml">
+                        <div class="portlet-input input-small input-inline">
+                            <div class="input-icon right">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="tpl-block ">
+
+                    <div class="am-g tpl-amazeui-form">
+
+
+                        <div class="am-u-sm-12 am-u-md-9">
+                            <form class="am-form am-form-horizontal" action="{:url('User/house_do_add')}" method="post">
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">小区 / zone</label>
+                                    <div class="am-u-sm-9">
+                                        <select name="zoneid">
+                                            <option value="0">-----请选择-------</option>
+                                            {volist id="vo" name="zonename"}
+                                            <option value="{$vo.Id}">{$vo.name}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-email" class="am-u-sm-3 am-form-label">楼栋 / building</label>
+                                    <div class="am-u-sm-9">
+                                        <select name="building">
+                                            <option value="0">-----请选择-------</option>
+                                            {for start="1" end="21"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-email" class="am-u-sm-3 am-form-label">单元 / roomnumber</label>
+                                    <div class="am-u-sm-9">
+                                        <select name="roomnumber">
+                                            <option value="0">-----请选择-------</option>
+                                            {for start="1" end="6"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-email" class="am-u-sm-3 am-form-label">门牌号 / homecard</label>
+                                    <div class="am-u-sm-9">
+                                        <select name="homecard">
+                                            <option value="0">-----请选择-------</option>
+                                            {for start="101" end="103"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                            {for start="201" end="203"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                            {for start="301" end="303"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                            {for start="401" end="403"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                            {for start="501" end="503"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                            {for start="601" end="603"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                            {for start="701" end="703"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                            {for start="801" end="803"}
+                                            <option value="{$i}">{$i}</option>
+                                            {/for}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-QQ" class="am-u-sm-3 am-form-label">面积 / area</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" name="area" id="user-email"  class="inputs" value="">
+                                        <span class="titles" style="height:30px;width:100%;display:block;font-size:15px"> </span>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">产权人 / propertyowner</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" id="user-weibo" name="truename" class="inputs" value="">
+                                        <span style="height:30px;width:100%;display:block;font-size:15px" class="titles" > </span>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">产权人手机号 / propertyownerTel</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" id="user-weibo" name="telphone" class="inputs" value="">
+                                        <span style="height:30px;width:100%;display:block;font-size:15px" class="titles" > </span>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">产权人性别 / sex</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="radio" name="sex" checked="checked" value='1'>男
+                                        <input type="radio" name="sex" value='0'>女
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">产税 / receiable</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" id="user-weibo" name="receiable" class="inputs" value="">
+                                        <span class="titles" style="height:30px;width:100%;display:block;font-size:15px"></span>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <button type="submit" class="am-btn am-btn-primary" id="adds">添加</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+{include file="public/footer"}

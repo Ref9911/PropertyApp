@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>智慧物业后台</title>
+<meta name="description" content="这是一个 index 页面">
+<meta name="keywords" content="index">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="__STATIC__/assets/i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="__STATIC__/assets/i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+
+{include file="public/css"}
+
+</head>
+
+<body data-type="generalComponents">
+
+
+{include file="public/header"}
+
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+
+
+{include file="public/menu"}
+
+<style>
+.am-tabs-nav li {
+    position: relative;
+    z-index: 1;
+}
+
+.am-tabs-nav .am-icon-close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: #888;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.am-tabs-nav .am-icon-close:hover {
+    color: #333;
+}
+
+.am-tabs-nav .am-icon-close ~ a {
+    padding-right: 25px!important;
+}
+.tpl-content-wrapper-center{
+    padding: 10px;
+}
+</style>
+<div class="tpl-content-wrapper">
+
+<div class="tpl-portlet-components">
+
+    <div class="am-tabs" data-am-tabs="{noSwipe: 1}" id="doc-tab-demo-1">
+        <ul class="am-tabs-nav am-nav am-nav-tabs">
+            <li class="am-active"><a href="javascript: void(0)">首页</a></li>
+        </ul>
+
+        <div class="am-tabs-bd">
+            <div class="am-tab-panel am-active">
+                <style rel="stylesheet" type="text/css">
+                    .today_font { color: #0b76ac; font-weight: 600;}
+                    .main_left { width: 270px;float: left; margin-right: 100px;}
+                    .main_left h1 {color: #0e90d2;}
+                    .main_left p { overflow: hidden;line-height: 30px;font-size: 13px;border-bottom: 1px dashed #9eacb4;}
+                    .main_left p span { display: block; width: 120px; text-align: left; float: left}
+                    .main_center { float: left; width: 250px; margin-right: 100px;}
+                    .main_center h1 {color: #0e90d2;}
+                    .main_center p { line-height: 30px;font-size: 13px;border-bottom: 1px dashed #9eacb4;}
+                    .main_right { float: left; width: 250px;}
+                    .main_right h1 {color: #0e90d2;}
+                    .main_right p { line-height: 30px;font-size: 13px;border-bottom: 1px dashed #9eacb4;}
+                </style>
+                <div class="tpl-content-wrapper tpl-content-wrapper-center">
+                    <div class="am-g">
+                    <div class="am-u-sm-12">
+                    <form class="am-form">
+                    <div class="main_left">
+                        <h1>用户信息</h1>
+                        <p><span>上次登陆时间 : </span>{if condition="$user_info.loginTime eq ''"} 0-0-0 0:0:0 {else} {$user_info.loginTime|date="Y-m-d H:i:s",###} {/if} </p>
+                        <p><span>姓名 : </span>{$user_info.username}</p>
+                        <p><span>手机号 : </span>{$user_info.telphone}</p>
+                        <p><span>所属用户组 : </span>{$user_info.title} </p>
+                        <!--<p><a href="{:url('User/admin_update',['id'=>$user_info['Id']])}" style="margin-left:60px;width: 85px;" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span style="width:15px;" class="am-icon-pencil-square-o"></span> 修改信息</a></p>-->
+                    </div>
+                    <div class="main_center">
+                        <h1>近期数据</h1>
+                        <p>今天收到 <span class="today_font">{$tousu}</span> 条投诉，共收到 <span class="today_font">{$total_tousu}</span> 条投诉</p>
+                        <p>今天收到 <span class="today_font">{$biaoyang}</span> 条表扬，共收到 <span class="today_font">{$total_biaoyang}</span> 条表扬</p>
+                        <p>今天收到 <span class="today_font">{$baoxiu}</span> 条保修，共收到 <span class="today_font">{$total_baoxiu}</span> 条保修</p>
+                        <p>今天收到 <span class="today_font">{$jianyi}</span> 条建议，共收到 <span class="today_font">{$total_jianyi}</span> 条建议</p>
+                        <p>今天收到 <span class="today_font">{$zixun}</span> 条咨询，共收到 <span class="today_font">{$total_zixun}</span> 条咨询</p>
+                    </div>
+                    <div class="main_right">
+                        <h1>最新消息</h1>
+                        {foreach item="vo" name="info"}
+                        <p>
+                            <a href="#">{$vo.title}</a>
+                        </p>
+                        {/foreach}
+                    </div>
+                    </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+
+</div>
+
+</div>
+
+{include file="public/footer"}
+
+</body>
+
+</html>

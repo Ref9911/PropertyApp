@@ -1,0 +1,68 @@
+{include file="public/css"}
+
+
+
+<div class="tpl-portlet-components">
+    <div class="portlet-title">
+        <div class="caption font-green bold">
+            <span class="am-icon-code"></span>banner图列表
+        </div>
+
+    </div>
+    <div class="tpl-block">
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-6">
+                <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="{:url('User/banner_image_add')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-form-group">
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    <!--<input type="text" class="am-form-field">-->
+                    <!--<span class="am-input-group-btn">-->
+                            <!--<button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button"></button>-->
+                        <!--</span>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="am-g" style="margin-top: 20px;">
+            <div class="tpl-table-images">
+                {foreach item="val" name="info"}
+                <div class="am-u-sm-12 am-u-md-6 am-u-lg-4" style="float: left">
+                    <div class="tpl-table-images-content">
+                        <a href="javascript:;" class="tpl-table-images-content-i">
+                            <img src="{$val.photo}" style="width: 298px;" alt="">
+                        </a>
+                        <div class="tpl-table-images-content-block">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs tpl-edit-content-btn">
+                                    <a href="{:url('User/banner_image_update',['Id'=>$val['Id']])}" style="padding-left:18%;padding-right:30%;" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-edit"></span> 编辑</a>
+                                    <a href="{:url('User/banner_image_delete',['Id'=>$val['Id']])}" style="padding-left:18%;padding-right:30%;"  class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+        </div>
+        <div class="am-cf">
+            <div class="am-fr">
+                {$page}
+            </div>
+        </div>
+        <hr>
+
+    </div>
+
+</div>
+
+
+{include file="public/footer"}

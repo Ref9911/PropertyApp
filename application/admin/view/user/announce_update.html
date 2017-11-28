@@ -1,0 +1,122 @@
+
+{include file="public/css"}
+
+
+<div class="tpl-portlet-components">
+    <div class="portlet-title">
+        <div class="caption font-green bold">
+            <span class="am-icon-code"></span> 公告修改
+        </div>
+        <div class="tpl-portlet-input tpl-fz-ml">
+            <div class="portlet-input input-small input-inline">
+                <div class="input-icon right">
+                    <i class="am-icon-search"></i>
+                    <input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="tpl-block">
+
+        <div class="am-g">
+            <div class="tpl-form-body tpl-form-line">
+                <form class="am-form tpl-form-line-form" action="{:url('User/announce_do_update')}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="Id" value="{$info.Id}">
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
+                        <div class="am-u-sm-9">
+                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入公告标题" name="title" value="{$info.title}">
+                            <small>请填写标题文字10-20字左右。</small>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">公告图 / Photo</label>
+                        <div class="am-u-sm-9">
+                            <div class="am-form-group am-form-file">
+                                <div class="tpl-form-file-img">
+                                    <img style="max-height: 200px; width: auto;" id="preview" src="{$info.photo}" alt="">
+                                </div>
+                                <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                    <i class="am-icon-cloud-upload"></i> 添加公告图片</button>
+                                <input id="doc-form-file" name="photo" type="file" multiple>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="am-form-group">-->
+                        <!--<label for="user-email" class="am-u-sm-3 am-form-label">作者 / Author</label>-->
+                        <!--<div class="am-u-sm-9">-->
+                            <!--<input name="author" type="text" id="user-email" value="">-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-form-label">类型 / Type</label>
+                        <div class="am-u-sm-9">
+                            <input type="radio" name="type" value="物业" {if condition="$info.type eq '物业'"} checked {/if}><small>物业</small>
+                            <input type="radio" name="type" value="活动" {if condition="$info.type eq '活动'"} checked {/if}><small>活动</small>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="user-intro" class="am-u-sm-3 am-form-label">公告内容</label>
+                        <div class="am-u-sm-9">
+                            <div class="am-u-sm-9" >
+                                <!-- 加载编辑器的容器 -->
+                                <script id="container" name="content" type="text/plain">{$info.content}</script>
+                                <!-- 配置文件 -->
+                                <script type="text/javascript" src="__STATIC__/ueditor/ueditor.config.js"></script>
+                                <!-- 编辑器源码文件 -->
+                                <script type="text/javascript" src="__STATIC__/ueditor/ueditor.all.js"></script>
+                                <!-- 实例化编辑器 -->
+                                <script type="text/javascript">
+                                    var ue = UE.getEditor('container');
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{include file="public/footer"}
+<script type="text/javascript">
+    $(function() {
+        $("#doc-form-file").change(function() {
+            var $file = $(this);
+            var fileObj = $file[0];
+            var windowURL = window.URL || window.webkitURL;
+            var dataURL;
+            var $img = $("#preview");
+
+            if(fileObj && fileObj.files && fileObj.files[0]){
+                dataURL = windowURL.createObjectURL(fileObj.files[0]);
+                $img.attr('src',dataURL);
+            }else{
+                dataURL = $file.val();
+                var imgObj = document.getElementById("preview");
+// 两个坑:
+// 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性在加入，无效；
+// 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+                imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+
+            }
+        });
+    });
+
+</script>

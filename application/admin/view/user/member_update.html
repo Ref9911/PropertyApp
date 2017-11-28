@@ -1,0 +1,103 @@
+{include file="public/css"}
+
+<div class="tpl-portlet-components">
+    <div class="portlet-title">
+        <div class="caption font-green bold">
+            <span class="am-icon-code"></span> 业主修改
+        </div>
+        <div class="tpl-portlet-input tpl-fz-ml">
+            <div class="portlet-input input-small input-inline">
+                <div class="input-icon right">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="tpl-block ">
+
+        <div class="am-g tpl-amazeui-form">
+            <div class="am-u-sm-12 am-u-md-9">
+                <form action="{:url('User/member_do_update')}"  method="post" enctype="multipart/form-data" class="am-form am-form-horizontal">
+                    <input type="hidden" value="{$info.Id}" name="Id"/>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">昵称 / nickname</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" disabled value="{$info.nickname}" id="user-name" placeholder="昵称 / nickname">
+                            <small>输入你的昵称，让我们记住你。</small>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / truename</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" disabled value="{$info.truename}" id="user-name" placeholder="姓名 / truename">
+                            <small>输入你的姓名，让我们记住你。</small>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">头像 / Photo</label>
+                        <div class="am-u-sm-9">
+                            <div class="am-form-group am-form-file">
+                                <div class="tpl-form-file-img">
+                                    <img style="max-height: 200px; width: auto;" id="preview" src="{$info.photo}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">手机号 / telephone</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" disabled value="{$info.telphone}" id="user-name" placeholder="手机号 / telephone">
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-form-label">性别</label>
+                        <div class="am-u-sm-9">
+                            <input type="radio" value="男" disabled {if condition="$info.sex eq 1"} checked="checked" {/if} value='1'>男
+                            <input type="radio" value="女" disabled {if condition="$info.sex eq 0"} checked="checked" {/if} value='0'>女
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">生日 / birth</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" disabled value="{$info.birth}" id="user-name" placeholder="生日 / birth">
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">地址 / address</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" disabled value="{$info.address}" id="user-name" placeholder="地址 / address">
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">身份 / identiey</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" disabled value="{$info.identiey}" id="user-name" placeholder="身份 / identiey">
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-form-label">房产id</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" name="homeid" value='{$info.homeid}'>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-form-label">审核状态</label>
+                        <div class="am-u-sm-9">
+                            <input type="radio"  name="shenhe" {if condition="$info.shenhe eq 1"} checked="checked" {/if} value='1'>审核
+                            <input type="radio"  name="shenhe" {if condition="$info.shenhe eq 0"} checked="checked" {/if} value='0'>未审核
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <button type="submit" class="am-btn am-btn-primary">修改</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{include file="public/footer"}

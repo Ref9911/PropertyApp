@@ -1,0 +1,64 @@
+{include file="public/css"}
+<div class="tpl-portlet-components">
+    <div class="portlet-title">
+        <div class="caption font-green bold">
+            <span class="am-icon-code"></span> 消息修改
+        </div>
+        <div class="tpl-portlet-input tpl-fz-ml">
+            <div class="portlet-input input-small input-inline">
+                <!--<div class="input-icon right">-->
+                    <!--<i class="am-icon-search"></i>-->
+                    <!--<input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>-->
+            </div>
+        </div>
+
+
+    </div>
+    <div class="tpl-block ">
+
+        <div class="am-g tpl-amazeui-form">
+
+
+            <div class="am-u-sm-12 am-u-md-9">
+                <form enctype="multipart/form-data" action="{:url('User/message_do_update')}" method="post" class="am-form am-form-horizontal">
+                    <input type="hidden" name="Id" value="{$info.Id}">
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">标题 / Title</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" name="title" id="user-name" value="{$info.title}">
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">缩略图 / Photo</label>
+                        <div class="am-u-sm-9">
+                            <div class="am-form-group am-form-file">
+                                <div class="tpl-form-file-img">
+                                    <img style="max-height: 200px; width: auto;" id="preview" src="{$info.photo}" alt="">
+                                </div>
+                                <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                    <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
+                                <input name="photo" id="doc-form-file" type="file" multiple>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="user-intro" class="am-u-sm-3 am-form-label">内容 / Content</label>
+                        <div class="am-u-sm-9">
+                            <textarea name="content">{$info.content}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <button type="submit" class="am-btn am-btn-primary">修改</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{include file="public/footer"}

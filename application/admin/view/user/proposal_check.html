@@ -1,0 +1,62 @@
+{include file="public/css"}
+    <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 建议查看
+            </div>
+            <div class="tpl-portlet-input tpl-fz-ml">
+                <div class="portlet-input input-small input-inline">
+                    <div class="input-icon right">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="tpl-block ">
+
+            <div class="am-g tpl-amazeui-form">
+
+
+                <div class="am-u-sm-12 am-u-md-9">
+                    <form class="am-form am-form-horizontal" method="post" enctype="multipart/form-data">
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">建议人 / Name</label>
+                            <div class="am-u-sm-9">
+                                <input disabled type="text" id="user-name" value="{$vo.username}">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">图片 / Photo</label>
+                            <div class="am-u-sm-9">
+                                <div class="am-form-group am-form-file">
+                                    <div class="tpl-form-file-img" style="padding: 0; width: 600px;">
+                                        {for start="0" end="$num"}
+                                        <img style="max-height: 200px; width: auto; float: left;margin: 0 30px 30px 0" id="preview" src="{$vo['photo'][$i]}" alt="">
+                                        {/for}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-intro" class="am-u-sm-3 am-form-label">建议内容 / Intro</label>
+                            <div class="am-u-sm-9">
+                                <textarea disabled class="" rows="5" id="user-intro" placeholder="输入建议内容">{$vo.intro}</textarea>
+                                <small>200字以内写出你所想建议的...</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <a href="javascript:history.go(-1)" class="am-btn am-btn-primary">返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{include file="public/footer"}

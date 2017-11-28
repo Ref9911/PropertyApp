@@ -1,0 +1,108 @@
+{include file="public/css"}
+
+
+<div class="tpl-portlet-components">
+    <div class="portlet-title">
+        <div class="caption font-green bold">
+            <span class="am-icon-code"></span> 权限设置
+        </div>
+        <div class="tpl-portlet-input tpl-fz-ml">
+            <div class="portlet-input input-small input-inline">
+                <div class="input-icon right">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="tpl-block ">
+        <div class="am-g tpl-amazeui-form">
+            <div class="am-u-sm-12 am-u-md-9">
+                <form method="post" action="{:url('User/do_set_rule')}" class="am-form am-form-horizontal">
+                    {volist id="vo" name="rulelist"}
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9">
+                            <input type="checkbox" class="first_level first_level_{$vo.Id}" data-id="{$vo.Id}" name="ruleid[]" value="{$vo.Id}"><small>{$vo.title}</small>
+                        </div>
+                        {volist id="sec" name="vo.second"}
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9" style="padding-left: 40px;">
+                                <input type="checkbox" class="second_level_{$sec.parentid} second_level_{$sec.Id} second_level" data-id="{$sec.Id}" data-parentid="{$sec.parentid}" name="ruleid[]" value="{$sec.Id}"><small>{$sec.title}</small>
+                                <div style="padding-left: 40px;">
+                                    {volist id="third" name="sec.third"}
+                                    <input type="checkbox" class="second_level_{$sec.parentid} third_level_{$sec.Id} third_level" data-id="{$third.Id}" data-parentid="{$sec.Id}" data-ppid="{$vo.Id}" name="ruleid[]" value="{$third.Id}"><small>{$third.title}</small>
+                                    {/volist}
+
+                                </div>
+                            </div>
+                        </div>
+                        {/volist}
+                    </div>
+                    {/volist}
+                    <p data="{$userrule}" id="rules"></p>
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <input type="hidden" name="groupid" value="{$groupid}">
+                            <button type="submit" class="am-btn am-btn-primary">保存</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+{include file="public/footer"}
+<script type="text/javascript">
+    $(function () {
+        var rules=$('#rules').attr('data');
+        $('.first_level').each(function () {
+            if(rules.indexOf($(this).attr('value'))>=0){
+                $(this).prop('checked',true);
+            }
+        })
+        $('.second_level').each(function () {
+            if(rules.indexOf($(this).attr('value'))>=0){
+                $(this).prop('checked',true);
+            }
+        })
+
+    })
+
+    $('.first_level').click(function(){
+        var id=$(this).attr('data-id');
+        if($(this).is(':checked'))
+        {
+            $('.second_level_'+id).prop('checked',true);
+            $('.third_level_'+id).prop('checked',true);
+
+        }
+        else{
+            $('.second_level_'+id).prop('checked',false);
+            $('.third_level_'+id).prop('checked',false);
+
+        }
+
+    });
+    $('.second_level').click(function(){
+        var id=$(this).attr('data-id');
+        var pid=$(this).attr('data-parentid');
+        $('.first_level_'+pid).prop('checked',true);
+
+        if($(this).is(':checked'))
+        {
+            $('.second_level_'+id).prop('checked',true);
+        }else{
+            $('.second_level_'+id).prop('checked',false);
+        }
+
+    });
+    $('.third_level').click(function(){
+        var pid=$(this).attr('data-pid');
+        var ppid=$(this).attr('data-ppid');
+        $('.second_'+pid).prop('checked',true);
+        $('.first_'+ppid).prop('checked',true);
+    });
+
+</script>

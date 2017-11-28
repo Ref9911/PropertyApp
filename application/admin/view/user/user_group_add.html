@@ -1,0 +1,50 @@
+{include file="public/css"}
+
+    <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 用户组添加
+            </div>
+
+        </div>
+        <div class="tpl-block ">
+
+            <div class="am-g tpl-amazeui-form">
+
+
+                <div class="am-u-sm-12 am-u-md-9">
+                    <form action="{:url('User/do_user_group_add')}" method="post" class="am-form am-form-horizontal">
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-3 am-form-label">用户组名称 / GroupName</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" name="title" id="user-name" placeholder="姓名 / Name">
+                                <small>输入用户组名称</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user-email" class="am-u-sm-3 am-form-label">状态 / Status</label>
+                            <div class="am-u-sm-9">
+                                <input type="radio" name="status" value="1" checked><small>启用</small>
+                                <input type="radio" name="status" value="0"><small>禁用</small>
+
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="submit" class="am-btn am-btn-primary">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+{include file="public/footer"}

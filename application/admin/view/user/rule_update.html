@@ -1,0 +1,55 @@
+{include file="public/css"}
+
+<div class="tpl-portlet-components">
+    <div class="portlet-title">
+        <div class="caption font-green bold">
+            <span class="am-icon-code"></span> 规则修改
+        </div>
+
+    </div>
+    <div class="tpl-block ">
+
+        <div class="am-g tpl-amazeui-form">
+
+
+            <div class="am-u-sm-12 am-u-md-9">
+                <form action="{:url('User/do_rule_update')}" method="post" class="am-form am-form-horizontal">
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">规则英文名称</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" name="name" value="{$list.name}" id="rule_name_en" placeholder="姓名 / Name">
+                            <small id="Eng_msg">输入规则英文名称</small>
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">规则中文名称</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" name="title" value="{$list.title}" id="rule_name_zh" placeholder="姓名 / Name">
+                            <small id="Zh_msg">输入规则中文名称</small>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="user-email" class="am-u-sm-3 am-form-label">状态 / Status</label>
+                        <div class="am-u-sm-9">
+                            <input type="radio" name="status" value="1" {if condition="$list.status eq 1"} checked {/if}><small>启用</small>
+                            <input type="radio" name="status" value="0" {if condition="$list.status eq 0"} checked {/if}><small>禁用</small>
+
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <input type="hidden" name="id" value="{$list.Id}">
+                            <button type="submit" id="save" class="am-btn am-btn-primary">修改</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{include file="public/footer"}
+

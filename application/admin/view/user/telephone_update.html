@@ -1,0 +1,51 @@
+{include file="public/css"}
+<div class="tpl-portlet-components">
+    <div class="portlet-title">
+        <div class="caption font-green bold">
+            <span class="am-icon-code"></span> 电话修改
+        </div>
+        <div class="tpl-portlet-input tpl-fz-ml">
+            <div class="portlet-input input-small input-inline">
+                <!--<div class="input-icon right">-->
+                    <!--<i class="am-icon-search"></i>-->
+                    <!--<input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>-->
+            </div>
+        </div>
+
+
+    </div>
+    <div class="tpl-block ">
+
+        <div class="am-g tpl-amazeui-form">
+
+
+            <div class="am-u-sm-12 am-u-md-9">
+                <form enctype="multipart/form-data" action="{:url('User/telephone_do_update')}" method="post" class="am-form am-form-horizontal">
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">名字 / Name</label>
+                        <div class="am-u-sm-9">
+                            <input type="text"{if condition="$info.name eq '服务生活中心'"} disabled {else} name="name" {/if} id="user-name" value="{$info.name}">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">电话号 / Telephone</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" name="phone" id="user-name" value="{$info.phone}">
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="Id" value="{$info.Id}">
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <button type="submit" class="am-btn am-btn-primary">修改</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{include file="public/footer"}

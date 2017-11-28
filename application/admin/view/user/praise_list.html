@@ -1,0 +1,110 @@
+{include file="public/css"}
+     
+            
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 表扬列表
+                    </div>
+
+
+
+                </div>
+                <div class="tpl-block">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button type="button" id="rule_delete_all"  class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-form-group">
+
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <form action="{:url('User/praise_search')}" method="post">
+                                <div class="am-input-group am-inoput-group-sm">
+                                    <!--<input placeholder="请输入想要搜索的表扬人" type="text" class="am-form-field" name='sousuo'>-->
+                                    <!--<span class="am-input-group-btn">-->
+            <!--<button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="submit"></button>-->
+          <!--</span>-->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="am-g">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                        <tr>
+                                            <th class="table-check"><input type="checkbox" id="rule_check_all" class="tpl-table-fz-check"></th>
+                                            <th class="table-id">ID</th>
+                                            <th class="table-title">表扬人</th>
+                                            <th class="table-type">时间</th>
+                                            <th class="table-author am-hide-sm-only">表扬内容</th>
+                                            <th class="table-type">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+										{volist id="vo" name="ergou"}
+                                        <tr>
+                                            <td><input type="checkbox" value="{$vo.Id}" class="check_ids"></td>
+                                            <td >{$vo.Id}</td>
+                                            <td ><a href="#"></a>{$vo.username}</td>
+                                            <td ><a href="#"></a>{$vo.pubtime|date="Y-m-d",###}</td>
+											<td ><a href="#"></a><div style="width:100px;overflow:hidden;white-space: nowrap; text-overflow: ellipsis">{$vo.intro}</div></td>
+                                            <td >
+                                                <div class="am-btn-toolbar">
+                                                    <div class="am-btn-group am-btn-group-xs">
+                                                        <a href="{:url('User/praise_check',['Id'=>$vo['Id']])}" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 查看</a>
+														<a href="{:url('User/praise_delete',['id'=>$vo['Id']])}" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                       {/volist}
+                                        
+                                    </tbody>
+                                </table>
+                                <div class="am-cf">
+                                    <div class="am-fr">
+										{$page}
+																	
+									</div>
+                                </div>
+                                <hr>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tpl-alert"></div>
+            </div>
+{include file="public/footer"}
+<script src="__STATIC__/assets/js/jquery.min.js"></script>
+<!--批量删除-->
+<script type="text/javascript">
+    $('#rule_check_all').click(function(){
+        if($(this).is(':checked')){
+            $('.check_ids').prop('checked',true);
+        }else{
+            $('.check_ids').prop('checked',false);
+        }
+    });
+    $('#rule_delete_all').click(function(){
+        var rule_id = '';
+        $('.check_ids').each(function(){
+            if($(this).is(':checked')){
+                rule_id += $(this).val()+',';
+            }
+        });
+        rule_id = rule_id.substr(0,rule_id.length-1);
+        window.location.href="praise_delete/id/"+rule_id;
+    });
+</script>
